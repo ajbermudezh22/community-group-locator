@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Community Group Locator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Inter:wght@400;500;700;800;900&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <span class="brand">AI Studio</span>
+      <h1>Community Group Locator</h1>
+      <p>Find a community group near you in Berlin.</p>
+    </header>
+
+    <section class="card">
+      <label class="label" for="home">Where do you live?</label>
+      <select id="home"></select>
+    </section>
+
+    <p class="heading" id="heading" aria-live="polite"></p>
+    <section class="groups" id="groups"></section>
+
+    <p class="privacy">The hosts share the exact address after you get in touch. All names are examples.</p>
+    <footer class="app-footer">Built live at the <b>AI Studio</b> · Lift Conference 26</footer>
+  </main>
+  <script src="groups.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

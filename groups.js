@@ -1,0 +1,47 @@
+// Example data. All names are made up. Only the neighbourhood is shown,
+// the exact address is shared by the hosts after people get in touch.
+
+// Approximate centre of each neighbourhood (latitude, longitude).
+const NEIGHBOURHOODS = {
+  'Charlottenburg': [52.516, 13.304],
+  'Friedrichshain': [52.515, 13.454],
+  'Hackescher Markt': [52.522, 13.402],
+  'Kreuzberg': [52.497, 13.411],
+  'Lichtenberg': [52.515, 13.499],
+  'Mitte': [52.520, 13.405],
+  'Moabit': [52.530, 13.342],
+  'Neukölln': [52.481, 13.435],
+  'Pankow': [52.569, 13.402],
+  'Prenzlauer Berg': [52.539, 13.424],
+  'Reinickendorf': [52.589, 13.326],
+  'Schöneberg': [52.482, 13.355],
+  'Spandau': [52.535, 13.200],
+  'Steglitz': [52.457, 13.322],
+  'Tempelhof': [52.466, 13.385],
+  'Treptow': [52.488, 13.470],
+  'Wedding': [52.550, 13.366]
+};
+
+// spots = free places. 0 means the group is full.
+const GROUPS = [
+  { hosts: 'Martins & Olga',  area: 'Mitte',            day: 'Tuesday',   time: '19:30', spots: 3 },
+  { hosts: 'Alberto & Daryl', area: 'Prenzlauer Berg',  day: 'Wednesday', time: '19:00', spots: 2 },
+  { hosts: 'Chris & Giorgia', area: 'Reinickendorf',    day: 'Thursday',  time: '19:30', spots: 4, tag: 'Young adults' },
+  { hosts: 'Johnny & Liza',   area: 'Reinickendorf',    day: 'Sunday',    time: '18:00', spots: 0, tag: 'Young adults' },
+  { hosts: 'Sebas & Louisa',  area: 'Hackescher Markt', day: 'Friday',    time: '19:00', spots: 5, tag: 'Young adults' },
+  { hosts: 'Ale & Moritz',    area: 'Steglitz',         day: 'Saturday',  time: '10:00', spots: 3, tag: 'For families' },
+  { hosts: 'Priya & Daniel',  area: 'Kreuzberg',        day: 'Tuesday',   time: '19:00', spots: 2 },
+  { hosts: 'Kwame & Sofia',   area: 'Neukölln',         day: 'Sunday',    time: '12:00', spots: 0, tag: 'For families' },
+  { hosts: 'Mateo & Hannah',  area: 'Friedrichshain',   day: 'Thursday',  time: '19:30', spots: 6, tag: 'Young adults' },
+  { hosts: 'Yuki & Thomas',   area: 'Charlottenburg',   day: 'Wednesday', time: '19:30', spots: 1 },
+  { hosts: 'Amara',           area: 'Wedding',          day: 'Monday',    time: '19:00', spots: 4 },
+  { hosts: 'Luca & Inês',     area: 'Schöneberg',       day: 'Saturday',  time: '10:30', spots: 2, tag: 'For families' },
+  { hosts: 'Grace & Samuel',  area: 'Tempelhof',        day: 'Friday',    time: '19:30', spots: 0 },
+  { hosts: 'Nadia & Omar',    area: 'Moabit',           day: 'Thursday',  time: '18:30', spots: 3 },
+  { hosts: 'Elena & James',   area: 'Pankow',           day: 'Sunday',    time: '17:00', spots: 5, tag: 'For families' },
+  { hosts: 'Diego & Mia',     area: 'Treptow',          day: 'Wednesday', time: '19:00', spots: 2, tag: 'Young adults' },
+  { hosts: 'Fatima & Leon',   area: 'Lichtenberg',      day: 'Tuesday',   time: '19:30', spots: 3 },
+  { hosts: 'Olivia & Kenji',  area: 'Spandau',          day: 'Saturday',  time: '16:00', spots: 4, tag: 'For families' },
+  { hosts: 'Ana & Tobi',      area: 'Kreuzberg',        day: 'Friday',    time: '19:00', spots: 0, tag: 'Young adults' },
+  { hosts: 'Marco & Aisha',   area: 'Mitte',            day: 'Sunday',    time: '11:30', spots: 2, tag: 'For families' }
+];

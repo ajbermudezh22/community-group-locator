@@ -1,0 +1,16 @@
+.heading { margin: 4px 0 0; font-weight: 800; }
+.groups { display: flex; flex-direction: column; gap: 10px; }
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--surface);
+}
+.group-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.group h2 { margin: 0; font-size: 17px; font-weight: 800; }
+.group .meta { font-size: 14px; color: var(--muted); }
+.group .pill.info { align-self: flex-start; }
+.privacy { margin: 0; font-size: 13px; color: var(--muted); }
