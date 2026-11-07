@@ -42,6 +42,10 @@ function render() {
       </div>
       <span class="meta">${escapeHtml(group.area)} · ${group.km.toFixed(1)} km away</span>
       <span class="meta">${group.day}s at ${group.time}</span>
+      <span class="meta">Ages ${group.ages}</span>
+      <ul class="languages" aria-label="Languages spoken">
+        ${group.languages.map(lang => `<li>${escapeHtml(lang)}</li>`).join('')}
+      </ul>
       ${group.tag ? `<span class="pill info">${escapeHtml(group.tag)}</span>` : ''}
     </article>`).join('');
 }
