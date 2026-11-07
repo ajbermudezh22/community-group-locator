@@ -2,6 +2,15 @@
 const homeSelect = document.getElementById('home');
 const groupsEl = document.getElementById('groups');
 const headingEl = document.getElementById('heading');
+const ageSelect = document.getElementById('age');
+
+// Age group -> the group tag that fits it. Groups without a tag welcome all ages.
+const AGE_GROUPS = {
+  'Any age': null,
+  '18–30': 'Young adults',
+  'Family with kids': 'For families',
+  '30+': null
+};
 
 const SHOW = 5;
 
@@ -22,7 +31,13 @@ function render() {
   const home = homeSelect.value;
   const here = NEIGHBOURHOODS[home];
 
+  const age = ageSelect.value;
+  const wanted = AGE_GROUPS[age];
+  // Show groups made for this age group, plus the ones open to everyone.
+  const fits = group => age === 'Any age' || !group.tag || group.tag === wanted;
+
   const closest = GROUPS
+    .filter(fits)
     .map(group => ({
       ...group,
       // Same neighbourhood: count it as "about half a kilometre away".
@@ -31,9 +46,15 @@ function render() {
     .sort((a, b) => a.km - b.km)
     .slice(0, SHOW);
 
-  headingEl.textContent = `Closest groups to ${home}`;
-  groupsEl.innerHTML = closest.map(group => `
-    <article class="group">
+  // Recommend the closest group with free spots, preferring an exact age match.
+  const open = closest.filter(group => group.spots > 0);
+  const pick = (wanted && open.find(group => group.tag === wanted)) || open[0];
+  const list = pick ? [pick, ...closest.filter(group => group !== pick)] : closest;
+
+  headingEl.textContent = `Closest groups to ${home}` + (age === 'Any age' ? '' : ` for ${age}`);
+  groupsEl.innerHTML = list.map(group => `
+    <article class="group${group === pick ? ' recommended' : ''}">
+      ${group === pick ? '<span class="pill ok">★ Recommended for you</span>' : ''}
       <div class="group-top">
         <h2>${escapeHtml(group.hosts)}</h2>
         ${group.spots > 0
@@ -42,7 +63,7 @@ function render() {
       </div>
       <span class="meta">${escapeHtml(group.area)} · ${group.km.toFixed(1)} km away</span>
       <span class="meta">${group.day}s at ${group.time}</span>
-      ${group.tag ? `<span class="pill info">${escapeHtml(group.tag)}</span>` : ''}
+      <span class="pill info">${escapeHtml(group.tag || 'All ages')}</span>
     </article>`).join('');
 }
 
@@ -50,5 +71,7 @@ homeSelect.innerHTML = Object.keys(NEIGHBOURHOODS)
   .map(name => `<option${name === 'Kreuzberg' ? ' selected' : ''}>${name}</option>`)
   .join('');
 homeSelect.addEventListener('change', render);
+ageSelect.innerHTML = Object.keys(AGE_GROUPS).map(name => `<option>${name}</option>`).join('');
+ageSelect.addEventListener('change', render);
 
 render();
