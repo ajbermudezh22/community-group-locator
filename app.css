@@ -14,3 +14,7 @@
 .group .meta { font-size: 14px; color: var(--muted); }
 .group .pill.info { align-self: flex-start; }
 .privacy { margin: 0; font-size: 13px; color: var(--muted); }
+
+.group .languages { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; padding: 0; list-style: none; }
+.group .languages li { font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink); }
+.group .languages::before { content: "Speaks"; align-self: center; font-size: 14px; color: var(--muted); }
