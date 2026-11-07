@@ -14,3 +14,5 @@
 .group .meta { font-size: 14px; color: var(--muted); }
 .group .pill.info { align-self: flex-start; }
 .privacy { margin: 0; font-size: 13px; color: var(--muted); }
+.day-label { margin-top: 12px; }
+.empty { margin: 0; padding: 12px 14px; border: 1px dashed var(--line); border-radius: var(--r); color: var(--muted); }

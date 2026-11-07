@@ -2,8 +2,10 @@
 const homeSelect = document.getElementById('home');
 const groupsEl = document.getElementById('groups');
 const headingEl = document.getElementById('heading');
+const daySelect = document.getElementById('day');
 
 const SHOW = 5;
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // Distance in km between two [lat, lng] points.
 function distanceKm(a, b) {
@@ -21,8 +23,10 @@ function escapeHtml(text) {
 function render() {
   const home = homeSelect.value;
   const here = NEIGHBOURHOODS[home];
+  const day = daySelect.value; // '' means any day
 
   const closest = GROUPS
+    .filter(group => !day || group.day === day)
     .map(group => ({
       ...group,
       // Same neighbourhood: count it as "about half a kilometre away".
@@ -31,7 +35,11 @@ function render() {
     .sort((a, b) => a.km - b.km)
     .slice(0, SHOW);
 
-  headingEl.textContent = `Closest groups to ${home}`;
+  headingEl.textContent = `Closest groups to ${home}${day ? ` on ${day}s` : ''}`;
+  if (closest.length === 0) {
+    groupsEl.innerHTML = `<p class="empty">No groups meet on ${day}s yet. Try another day.</p>`;
+    return;
+  }
   groupsEl.innerHTML = closest.map(group => `
     <article class="group">
       <div class="group-top">
@@ -50,5 +58,9 @@ homeSelect.innerHTML = Object.keys(NEIGHBOURHOODS)
   .map(name => `<option${name === 'Kreuzberg' ? ' selected' : ''}>${name}</option>`)
   .join('');
 homeSelect.addEventListener('change', render);
+
+daySelect.innerHTML = '<option value="">Any day</option>' +
+  DAYS.map(name => `<option>${name}</option>`).join('');
+daySelect.addEventListener('change', render);
 
 render();
