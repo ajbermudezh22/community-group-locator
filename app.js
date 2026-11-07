@@ -42,6 +42,7 @@ function render() {
       </div>
       <span class="meta">${escapeHtml(group.area)} · ${group.km.toFixed(1)} km away</span>
       <span class="meta">${group.day}s at ${group.time}</span>
+      <span class="meta food"><b>Food:</b> ${group.food ? escapeHtml(group.food) : 'Ask the hosts what to bring'}</span>
       ${group.tag ? `<span class="pill info">${escapeHtml(group.tag)}</span>` : ''}
     </article>`).join('');
 }
