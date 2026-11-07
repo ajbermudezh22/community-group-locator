@@ -14,3 +14,16 @@
 .group .meta { font-size: 14px; color: var(--muted); }
 .group .pill.info { align-self: flex-start; }
 .privacy { margin: 0; font-size: 13px; color: var(--muted); }
+.group .about { margin: 2px 0 0; font-size: 15px; }
+.profile textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font: inherit;
+  font-size: 16px;
+  color: inherit;
+  resize: vertical;
+}
+.profile .hint { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); }
