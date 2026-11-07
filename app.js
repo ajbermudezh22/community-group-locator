@@ -42,6 +42,7 @@ function render() {
       </div>
       <span class="meta">${escapeHtml(group.area)} · ${group.km.toFixed(1)} km away</span>
       <span class="meta">${group.day}s at ${group.time}</span>
+      ${group.about ? `<p class="about">${escapeHtml(group.about)}</p>` : ''}
       ${group.tag ? `<span class="pill info">${escapeHtml(group.tag)}</span>` : ''}
     </article>`).join('');
 }
@@ -50,5 +51,20 @@ homeSelect.innerHTML = Object.keys(NEIGHBOURHOODS)
   .map(name => `<option${name === 'Kreuzberg' ? ' selected' : ''}>${name}</option>`)
   .join('');
 homeSelect.addEventListener('change', render);
+
+// Profile: what you are looking for. Stays in this browser only.
+const lookingEl = document.getElementById('looking');
+const savedEl = document.getElementById('saved');
+const PROFILE_KEY = 'cgl-looking-for';
+
+try { lookingEl.value = localStorage.getItem(PROFILE_KEY) || ''; } catch (e) {}
+lookingEl.addEventListener('input', () => {
+  try {
+    localStorage.setItem(PROFILE_KEY, lookingEl.value);
+    savedEl.textContent = 'Saved on this device only.';
+  } catch (e) {
+    savedEl.textContent = 'Could not save in this browser.';
+  }
+});
 
 render();
