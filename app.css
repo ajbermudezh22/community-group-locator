@@ -14,3 +14,17 @@
 .group .meta { font-size: 14px; color: var(--muted); }
 .group .pill.info { align-self: flex-start; }
 .privacy { margin: 0; font-size: 13px; color: var(--muted); }
+
+/* Map of where the groups roughly are */
+.map-card { margin: 0; padding: 10px; }
+.map { display: block; width: 100%; height: auto; border-radius: 10px; background: var(--surface-2); }
+.map circle.near { fill: var(--blue); opacity: .85; }
+.map circle.far { fill: var(--muted); opacity: .35; }
+.map circle.home { fill: none; stroke: var(--ink); stroke-width: 3; }
+.map text { font: 800 13px var(--sans); fill: var(--ink); }
+.map-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: 13px; color: var(--muted); }
+.map-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.near { background: var(--blue); }
+.dot.far { background: var(--muted); opacity: .35; }
+.dot.home { border: 3px solid var(--ink); }

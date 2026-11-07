@@ -2,6 +2,7 @@
 const homeSelect = document.getElementById('home');
 const groupsEl = document.getElementById('groups');
 const headingEl = document.getElementById('heading');
+const mapEl = document.getElementById('map');
 
 const SHOW = 5;
 
@@ -32,6 +33,7 @@ function render() {
     .slice(0, SHOW);
 
   headingEl.textContent = `Closest groups to ${home}`;
+  renderMap(home, closest);
   groupsEl.innerHTML = closest.map(group => `
     <article class="group">
       <div class="group-top">
@@ -44,6 +46,32 @@ function render() {
       <span class="meta">${group.day}s at ${group.time}</span>
       ${group.tag ? `<span class="pill info">${escapeHtml(group.tag)}</span>` : ''}
     </article>`).join('');
+}
+
+// Turn [lat, lng] into x, y on the 320 x 230 map (a simple flat projection).
+function toMap([lat, lng]) {
+  const x = 20 + ((lng - 13.19) / 0.32) * 280;
+  const y = 20 + ((52.60 - lat) / 0.15) * 190;
+  return [x.toFixed(1), y.toFixed(1)];
+}
+
+// Draw one dot per neighbourhood with groups; bigger dot = more groups.
+function renderMap(home, closest) {
+  const nearAreas = new Set(closest.map(group => group.area));
+  const counts = {};
+  GROUPS.forEach(group => { counts[group.area] = (counts[group.area] || 0) + 1; });
+
+  const dots = Object.entries(counts).map(([area, count]) => {
+    const [x, y] = toMap(NEIGHBOURHOODS[area]);
+    const kind = nearAreas.has(area) ? 'near' : 'far';
+    const label = `${area}: ${count} ${count === 1 ? 'group' : 'groups'}`;
+    return `<circle class="${kind}" cx="${x}" cy="${y}" r="${4 + count * 2}"><title>${escapeHtml(label)}</title></circle>`;
+  });
+
+  const [hx, hy] = toMap(NEIGHBOURHOODS[home]);
+  mapEl.innerHTML = dots.join('') + `
+    <circle class="home" cx="${hx}" cy="${hy}" r="11"></circle>
+    <text x="${hx}" y="${hy - 15}" text-anchor="middle">You</text>`;
 }
 
 homeSelect.innerHTML = Object.keys(NEIGHBOURHOODS)
