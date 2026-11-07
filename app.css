@@ -14,3 +14,5 @@
 .group .meta { font-size: 14px; color: var(--muted); }
 .group .pill.info { align-self: flex-start; }
 .privacy { margin: 0; font-size: 13px; color: var(--muted); }
+.group .food { color: var(--text); }
+.group .food b { font-weight: 700; }
