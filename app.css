@@ -12,5 +12,7 @@
 .group-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .group h2 { margin: 0; font-size: 17px; font-weight: 800; }
 .group .meta { font-size: 14px; color: var(--muted); }
-.group .pill.info { align-self: flex-start; }
+.group .pill { align-self: flex-start; }
+.group.recommended { border: 2px solid var(--blue); background: var(--blue-soft); }
 .privacy { margin: 0; font-size: 13px; color: var(--muted); }
+.card select + .label { margin-top: 14px; }
